@@ -41,4 +41,4 @@ RUN python3 -m ipykernel.kernelspec
 
 EXPOSE 8889
 
-CMD ["sh", "-c", "jupyter notebook --port=8889 --no-browser --ip=*"]
+CMD ["sh", "-c", "jupyter notebook --port=8889 --no-browser --ip=0.0.0.0"]
