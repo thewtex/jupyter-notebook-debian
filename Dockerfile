@@ -39,6 +39,7 @@ RUN chmod -R +rX /srv/notebook
 RUN pip3 install .
 RUN python3 -m ipykernel.kernelspec
 
+WORKDIR /notebooks
 EXPOSE 8889
 
 CMD ["sh", "-c", "jupyter notebook --port=8889 --no-browser --ip=0.0.0.0"]
