@@ -39,7 +39,14 @@ RUN chmod -R +rX /srv/notebook
 RUN pip3 install .
 RUN python3 -m ipykernel.kernelspec
 
+# Add Tini. Tini operates as a process subreaper for jupyter. This prevents
+# kernel crashes.
+ENV TINI_VERSION v0.6.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
 WORKDIR /notebooks
 EXPOSE 8889
 
-CMD ["sh", "-c", "jupyter notebook --port=8889 --no-browser --ip=0.0.0.0"]
+CMD ["jupyter", "notebook", "--port=8889", "--no-browser", "--ip=0.0.0.0"]
