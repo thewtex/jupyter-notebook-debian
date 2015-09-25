@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y curl && \
   python3-pip \
   python3-sphinx \
   sqlite3 \
+  sudo \
   zlib1g-dev
 
 RUN pip3 install --upgrade setuptools pip
@@ -46,7 +47,14 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
-WORKDIR /notebooks
-EXPOSE 8889
+# Run jupyter as a non-root user, jovyan, by Jupyter project convention.
+RUN useradd -m -s /bin/bash jovyan && \
+  chown -R jovyan:users /home/jovyan
+ENV HOME /home/jovyan
+ENV SHELL /bin/bash
+ENV USER jovyan
+USER jovyan
+WORKDIR /home/jovyan
 
+EXPOSE 8889
 CMD ["jupyter", "notebook", "--port=8889", "--no-browser", "--ip=0.0.0.0"]
