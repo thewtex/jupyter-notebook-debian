@@ -56,5 +56,5 @@ ENV USER jovyan
 USER jovyan
 WORKDIR /home/jovyan
 
-EXPOSE 8889
-CMD ["jupyter", "notebook", "--port=8889", "--no-browser", "--ip=0.0.0.0"]
+EXPOSE 8888
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
