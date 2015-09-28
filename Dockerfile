@@ -48,7 +48,8 @@ RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Run jupyter as a non-root user, jovyan, by Jupyter project convention.
-RUN useradd -m -s /bin/bash jovyan && \
+RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/notebook && \
+  useradd -m -s /bin/bash jovyan && \
   chown -R jovyan:users /home/jovyan
 ENV HOME /home/jovyan
 ENV SHELL /bin/bash
