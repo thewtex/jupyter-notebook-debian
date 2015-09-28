@@ -36,9 +36,9 @@ RUN pip3 install .
 WORKDIR /srv/
 RUN git clone --depth 1 https://github.com/jupyter/notebook /srv/notebook
 WORKDIR /srv/notebook/
-RUN chmod -R +rX /srv/notebook
-RUN pip3 install .
-RUN python3 -m ipykernel.kernelspec
+RUN chmod -R +rX /srv/notebook && \
+  pip3 install . && \
+  python3 -m ipykernel.kernelspec
 
 # Add Tini. Tini operates as a process subreaper for jupyter. This prevents
 # kernel crashes.
