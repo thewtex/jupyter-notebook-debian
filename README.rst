@@ -7,7 +7,8 @@ jupyter-notebook-debian
 .. image:: https://badge.imagelayers.io/thewtex/jupyter-notebook-debian:latest.svg
   :target: https://imagelayers.io/?images=thewtex/jupyter-notebook-debian:latest
 
-A `Jupyter <http://jupyter.org>`_  Notebook with the `Python <http://python.org>`_ 3 kernel. Docker image based on Debian.
+A `Jupyter <http://jupyter.org>`_  Notebook with the `Python
+<http://python.org>`_ 3 kernel. The Docker image is based on Debian.
 
 Example startup::
 
