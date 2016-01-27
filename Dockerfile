@@ -29,12 +29,14 @@ ENV LC_ALL en_US.UTF-8
 
 RUN mkdir -p /srv/
 WORKDIR /srv/
-RUN git clone --depth 1 https://github.com/ipython/ipykernel /srv/ipykernel
+ENV IPYKERNEL_VERSION 4.2.2
+RUN git clone --depth 1 --branch ${IPYKERNEL_VERSION} https://github.com/ipython/ipykernel /srv/ipykernel
 WORKDIR /srv/ipykernel
 RUN pip3 install .
 
 WORKDIR /srv/
-RUN git clone --depth 1 https://github.com/jupyter/notebook /srv/notebook
+ENV NOTEBOOK_VERSION 4.1.0
+RUN git clone --depth 1 --branch ${NOTEBOOK_VERSION} https://github.com/jupyter/notebook /srv/notebook
 WORKDIR /srv/notebook/
 RUN chmod -R +rX /srv/notebook && \
   pip3 install . && \
