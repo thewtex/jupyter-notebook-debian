@@ -1,0 +1,12 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker pull thewtex/jupyter-notebook-debian
+
+test:
+  override:
+    - ~/jupyter-notebook-debian/build.sh
