@@ -13,3 +13,7 @@ Example startup:
 ```bash
 docker run --rm -p 8888:8888 -v $(pwd):/work/ thewtex/jupyter-notebook-debian
 ```
+
+**Note:** This project is largely obsolete now that
+[jupyter/docker-stacks](https://github.com/jupyter/docker-stacks) is based
+on Debian.
