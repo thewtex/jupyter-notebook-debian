@@ -29,13 +29,13 @@ ENV LC_ALL en_US.UTF-8
 
 RUN mkdir -p /srv/
 WORKDIR /srv/
-ENV IPYKERNEL_VERSION 4.2.2
+ENV IPYKERNEL_VERSION 4.4.1
 RUN git clone --depth 1 --branch ${IPYKERNEL_VERSION} https://github.com/ipython/ipykernel /srv/ipykernel
 WORKDIR /srv/ipykernel
 RUN pip3 install .
 
 WORKDIR /srv/
-ENV NOTEBOOK_VERSION 4.1.0
+ENV NOTEBOOK_VERSION 4.2.2
 RUN git clone --depth 1 --branch ${NOTEBOOK_VERSION} https://github.com/jupyter/notebook /srv/notebook
 WORKDIR /srv/notebook/
 RUN chmod -R +rX /srv/notebook && \
@@ -44,7 +44,7 @@ RUN chmod -R +rX /srv/notebook && \
 
 # Add Tini. Tini operates as a process subreaper for jupyter. This prevents
 # kernel crashes.
-ENV TINI_VERSION v0.9.0
+ENV TINI_VERSION v0.10.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
